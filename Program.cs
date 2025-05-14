@@ -51,4 +51,47 @@ app.MapControllerRoute(
 app.MapRazorPages()
    .WithStaticAssets();
 
+// Populate DB with test data
+// Add Roles
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    List<string> roles = [ "Admin", "Warehouse Staff" ];
+    foreach (var role in roles)
+        // avoid creating multiple instances when re-running the system
+        if (!await roleManager.RoleExistsAsync(role))
+            await roleManager.CreateAsync(new IdentityRole(role));
+}
+// Add Users
+using (var scope = app.Services.CreateScope())
+{
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<WarehouseUser>>();
+
+    if (await userManager.FindByEmailAsync("admin@wim.com") == null)
+    {
+        var adminUser = new WarehouseUser()
+        {
+            Name = "Mario Rodriguez",
+            UserName = "admin@wim.com",
+            Email = "admin@wim.com",
+            Status = 1,
+        };
+        var temp = await userManager.CreateAsync(adminUser, "Admin123-");
+        await userManager.AddToRoleAsync(adminUser, "Admin");
+    } 
+
+    if (await userManager.FindByEmailAsync("worker1@wim.com") == null)
+    {
+        var workerUser = new WarehouseUser()
+        {
+            Name = "Pedro Sánchez",
+            UserName = "worker1@wim.com",
+            Email = "worker1@wim.com",
+            Status = 1,
+        };
+        await userManager.CreateAsync(workerUser, "Worker123-");
+        await userManager.AddToRoleAsync(workerUser, "Warehouse Staff");
+    }
+}
+
 app.Run();
