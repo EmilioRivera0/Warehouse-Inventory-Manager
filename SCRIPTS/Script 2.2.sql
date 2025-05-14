@@ -6,6 +6,8 @@
 -- 	en base a la descripción del mismo.
 -- *La relación entre Usuarios y Roles es de 1 a Muchos, pero de ser necesario se puede agregar una tabla intermedia
 --	que permita la relación de Muchos a Muchos.
+-- INT es utilizado para 'estatus' ya que SQL Server no soporta el tipo de dato BOOLEAN.
+
 -- Este script esta diseñado para utilizarse en SQL Server
 
 CREATE TABLE Roles (
