@@ -6,7 +6,6 @@ namespace Warehouse_Inventory_Manager.Models
     {
         /* IdentityUser class already implements:
          * - idUser
-         * - name
          * - email
          * - password (hashed)
          * - idRol (handles relationship with Roles)
@@ -15,6 +14,7 @@ namespace Warehouse_Inventory_Manager.Models
          * - idRol
          * - name
          */
+        public string Name { get; set; } = null!;
         public int Status { get; set; } = 1; // 1 = active (default), 0 = inactive
     }
 }
