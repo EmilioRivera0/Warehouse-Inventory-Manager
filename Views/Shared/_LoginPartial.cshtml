@@ -2,11 +2,17 @@
 @inject SignInManager<WarehouseUser> SignInManager
 @inject UserManager<WarehouseUser> UserManager
 
+@{
+    // Get Name of the logged user to display in the header
+    var user = UserManager.GetUserAsync(User).Result;
+    string name = user?.Name ?? string.Empty;
+}
+
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @name!</a>
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
