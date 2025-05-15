@@ -97,5 +97,36 @@ using (var scope = app.Services.CreateScope())
         await userManager.AddToRoleAsync(workerUser, "Warehouse Staff");
     }
 }
+// Add Products
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    if (!context.ProductsSet.Any())
+    {
+        Console.WriteLine("Adding products");
+        context.ProductsSet.AddRange(
+            new Products
+            {
+                Name = "Hammer",
+                Price = 150,
+                Stock = 50,
+            },
+            new Products
+            {
+                Name = "Nails",
+                Price = 5,
+                Stock = 1120,
+            },
+            new Products
+            {
+                Name = "Jigsaw",
+                Price = 500,
+                Stock = 2,
+                Status = 0,
+            }
+            );
+        context.SaveChanges();
+    }
+}
 
 app.Run();
