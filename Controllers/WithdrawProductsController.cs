@@ -30,7 +30,7 @@ namespace Warehouse_Inventory_Manager.Controllers
 
             if (product == null)
                 return NotFound();
-            
+            ViewData["Name"] = product.Name;
             ViewData["Stock"] = product.Stock;
 
             return View();
@@ -47,12 +47,12 @@ namespace Warehouse_Inventory_Manager.Controllers
                 return NotFound();
 
             int withdrawAmount = int.Parse(Request.Form["WithdrawAmount"]);
-            Console.WriteLine(withdrawAmount);
 
             if (withdrawAmount > product.Stock)
             {
+                ViewData["Name"] = product.Name;
                 ViewData["Stock"] = product.Stock;
-                ViewData["Error"] = "Withdraw amount must be less than or equal to current Stock";
+                ViewData["Error"] = "Withdraw amount must be less than or equal to Current Stock";
                 return View();
             }
 
