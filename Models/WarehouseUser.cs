@@ -16,5 +16,7 @@ namespace Warehouse_Inventory_Manager.Models
          */
         public string Name { get; set; } = null!;
         public int Status { get; set; } = 1; // 1 = active (default), 0 = inactive
+        // Navigation property to enable relationships
+        public List<History> HistoryList { get; set; } = [];
     }
 }
