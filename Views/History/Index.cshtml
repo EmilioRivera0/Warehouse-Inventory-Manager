@@ -5,7 +5,14 @@
 }
 
 <h1>Index</h1>
-
+<form asp-area="" asp-controller="History" asp-action="Index" method="get">
+    <select name="option" onchange="this.form.submit()">
+        <option value="">Select Type</option>
+        <option value="A">All</option>
+        <option value="I">Increment</option>
+        <option value="W">Withdraw</option>
+    </select>
+</form>
 <table class="table">
     <thead>
         <tr>

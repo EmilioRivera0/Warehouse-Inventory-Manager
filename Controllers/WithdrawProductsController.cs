@@ -70,7 +70,7 @@ namespace Warehouse_Inventory_Manager.Controllers
             // add history record
             History history = new()
             {
-                Type = "Withdraw",
+                Type = "W",
                 IdProduct = id,
                 Product = product,
                 IdUser = user.Id,

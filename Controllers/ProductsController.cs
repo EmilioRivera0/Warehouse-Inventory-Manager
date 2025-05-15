@@ -86,7 +86,7 @@ namespace Warehouse_Inventory_Manager.Controllers
             // add history record
             History history = new()
             {
-                Type = "Increment",
+                Type = "I",
                 IdProduct = id,
                 Product = product,
                 IdUser = user.Id,

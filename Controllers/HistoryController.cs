@@ -17,9 +17,31 @@ namespace Warehouse_Inventory_Manager.Controllers
         private readonly ApplicationDbContext _context = context;
 
         // GET: List all Movements
-        public async Task<IActionResult> Index()
+        // Action Method accepts request with or without "option" parameter
+        [Route("/History/Index")]
+        [Route("/History/Index/{option?}")]
+        public async Task<IActionResult> Index(string option = null!)
         {
-            return View(await _context.HistorySet.ToListAsync());
+            List<History> historyList;
+
+            if (option != null && option != "A")
+            {
+                if (option == "I")
+                {
+                    Console.WriteLine("Increment");
+                }
+                else
+                {
+                    Console.WriteLine("Withdraw");
+                }
+                historyList = await _context.HistorySet.Where(it => it.Type == option).ToListAsync();
+            }
+            else
+            {
+                historyList = await _context.HistorySet.ToListAsync();
+            }
+
+            return View(historyList);
         }
     }
 }
