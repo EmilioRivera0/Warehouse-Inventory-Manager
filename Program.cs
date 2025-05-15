@@ -7,18 +7,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Connect to local SQL Server managed by Visual Studio
 /*var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<ApplicationIdentityDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();*/
 
 // Register in-memory database for development stage
+// Identity DB
+builder.Services.AddDbContext<ApplicationIdentityDbContext>(options =>
+    options.UseInMemoryDatabase("IdentityDB"));
+// Models DB
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseInMemoryDatabase("WarehouseInventoryManagerDB"));
 
 // User and Role Registration
 builder.Services.AddDefaultIdentity<WarehouseUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationIdentityDbContext>();
 
 builder.Services.AddControllersWithViews();
 

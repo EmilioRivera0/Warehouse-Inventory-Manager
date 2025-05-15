@@ -8,7 +8,7 @@ using Warehouse_Inventory_Manager.Data;
 
 namespace Warehouse_Inventory_Manager.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(ApplicationIdentityDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

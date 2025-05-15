@@ -9,7 +9,7 @@ using Warehouse_Inventory_Manager.Data;
 
 namespace Warehouse_Inventory_Manager.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(ApplicationIdentityDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
