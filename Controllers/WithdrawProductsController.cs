@@ -13,10 +13,9 @@ using Warehouse_Inventory_Manager.Models;
 namespace Warehouse_Inventory_Manager.Controllers
 {
     [Authorize(Roles = "Warehouse Staff")]
-    public class WithdrawProductsController(ApplicationDbContext context, ApplicationIdentityDbContext identityContext) : Controller
+    public class WithdrawProductsController(ApplicationDbContext context) : Controller
     {
         private readonly ApplicationDbContext _context = context;
-        private readonly ApplicationIdentityDbContext _identityContext = identityContext;
 
         // GET: List all Products
         public async Task<IActionResult> Index()
@@ -62,7 +61,7 @@ namespace Warehouse_Inventory_Manager.Controllers
 
             // get user object
             
-            WarehouseUser user = await _identityContext.Users.FindAsync(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            WarehouseUser user = await _context.Users.FindAsync(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
             if (user == null)
                 return Unauthorized();
