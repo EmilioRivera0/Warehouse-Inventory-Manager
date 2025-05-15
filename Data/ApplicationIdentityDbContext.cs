@@ -5,7 +5,7 @@ using Warehouse_Inventory_Manager.Models;
 
 namespace Warehouse_Inventory_Manager.Data
 {
-    public class ApplicationIdentityDbContext(DbContextOptions<ApplicationIdentityDbContext> options) : IdentityDbContext<WarehouseUser, IdentityRole, string>(options)
+    public class ApplicationIdentityDbContext(DbContextOptions<ApplicationIdentityDbContext> options) : IdentityDbContext<WarehouseUser, IdentityRole<int>, int>(options)
     {
     }
 }

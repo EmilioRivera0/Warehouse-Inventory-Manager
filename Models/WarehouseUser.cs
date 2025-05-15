@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Warehouse_Inventory_Manager.Models
 {
-    public class WarehouseUser : IdentityUser
+    public class WarehouseUser : IdentityUser<int>
     {
         /* IdentityUser class already implements:
          * - idUser

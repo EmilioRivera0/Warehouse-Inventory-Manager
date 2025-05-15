@@ -21,7 +21,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // User and Role Registration
 builder.Services.AddDefaultIdentity<WarehouseUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddRoles<IdentityRole>()
+    .AddRoles<IdentityRole<int>>()
     .AddEntityFrameworkStores<ApplicationIdentityDbContext>();
 
 builder.Services.AddControllersWithViews();
@@ -59,12 +59,12 @@ app.MapRazorPages()
 // Add Roles
 using (var scope = app.Services.CreateScope())
 {
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<int>>>();
     List<string> roles = [ "Admin", "Warehouse Staff" ];
     foreach (var role in roles)
         // avoid creating multiple instances when re-running the system
         if (!await roleManager.RoleExistsAsync(role))
-            await roleManager.CreateAsync(new IdentityRole(role));
+            await roleManager.CreateAsync(new IdentityRole<int>(role));
 }
 // Add Users
 using (var scope = app.Services.CreateScope())

@@ -62,7 +62,7 @@ namespace Warehouse_Inventory_Manager.Controllers
 
             // get user object
             
-            WarehouseUser user = await _identityContext.Users.FindAsync(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            WarehouseUser user = await _identityContext.Users.FindAsync(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
             if (user == null)
                 return Unauthorized();
