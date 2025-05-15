@@ -40,7 +40,16 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Type)
+                <p>
+                    @if (item.Type == "I")
+                    {
+                        <span class="badge bg-success">Increment</span>
+                    }
+                    else if (item.Type == "W")
+                    {
+                        <span class="badge bg-danger">Withdraw</span>
+                    }
+                </p>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdUser)
