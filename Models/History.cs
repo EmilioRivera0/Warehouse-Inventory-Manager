@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Warehouse_Inventory_Manager.Models
 {
@@ -12,7 +12,9 @@ namespace Warehouse_Inventory_Manager.Models
         public int IdProduct { get; set; }
         public Products Product { get; set; } = null!;
         // FK
-        public int IdUser { get; set; }
-        public WarehouseUser WarehouseUser { get; set; } = null!;
+        public string IdUser { get; set; } = null!;
+        // *Only the User Id is stored, since the Users are stored in a different DB Context,
+        // storing the User with this model will store a new copy of the user in the model's DB Context
+        // generating errors
     }
 }
