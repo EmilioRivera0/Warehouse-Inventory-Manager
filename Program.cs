@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
 using Warehouse_Inventory_Manager.Data;
 using Warehouse_Inventory_Manager.Models;
 
@@ -7,13 +8,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Connect to local SQL Server managed by Visual Studio
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+// Models DB
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // Register in-memory database for development stage
-// Identity DB
 // Models DB
+// Uncomment to test in memory db
 /*builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseInMemoryDatabase("WarehouseInventoryManagerDB"));*/
 
