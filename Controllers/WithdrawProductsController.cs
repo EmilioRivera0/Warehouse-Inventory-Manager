@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,9 +13,10 @@ using Warehouse_Inventory_Manager.Models;
 namespace Warehouse_Inventory_Manager.Controllers
 {
     [Authorize(Roles = "Warehouse Staff")]
-    public class WithdrawProductsController(ApplicationDbContext context) : Controller
+    public class WithdrawProductsController(ApplicationDbContext context, ApplicationIdentityDbContext identityContext) : Controller
     {
         private readonly ApplicationDbContext _context = context;
+        private readonly ApplicationIdentityDbContext _identityContext = identityContext;
 
         // GET: List all Products
         public async Task<IActionResult> Index()
@@ -58,11 +60,28 @@ namespace Warehouse_Inventory_Manager.Controllers
 
             product.Stock -= withdrawAmount;
 
+            // get user object
+            
+            WarehouseUser user = await _identityContext.Users.FindAsync(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            if (user == null)
+                return Unauthorized();
+
+            // add history record
+            History history = new()
+            {
+                Type = "Withdraw",
+                IdProduct = id,
+                Product = product,
+                IdUser = user.Id,
+            };
+
             if (ModelState.IsValid)
             {
                 try
                 {
                     _context.Update(product);
+                    _context.HistorySet.Add(history);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
