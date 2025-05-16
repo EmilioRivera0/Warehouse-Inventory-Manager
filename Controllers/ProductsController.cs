@@ -77,6 +77,8 @@ namespace Warehouse_Inventory_Manager.Controllers
 
             if (newStock <= 0)
             {
+                ViewData["Name"] = product.Name;
+                ViewData["Stock"] = product.Stock;
                 ViewData["Error"] = "Stock must be greater than 0.";
                 return View();
             }
