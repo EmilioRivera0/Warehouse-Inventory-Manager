@@ -13,10 +13,11 @@
 ## Steps to run the application
 #### About the used db for this application
 - *Since I was not able to pull the sql server image, to run the app you must install Visual Studio with Data Storage and Processing Workload / Paquete de Almacenamiento y Procesamiento de Datos and ASP.NET and Web Development / Desarrollo ASP.NET y Web in the Visual Studio Installer
-- *The application is configured to run with an instance of SQL Server in a docker container, you just need to uncomment the DefaultConnection attribute in appsettings.json file and comment the other one to test in in docker. And just run the below command before running the application:
+- *The application is configured to run with an instance of SQL Server in a docker container, you just need to uncomment the DefaultConnection attribute in appsettings.json file and comment the other one to test it in Docker. And just run the below command before running the application:
 ```powershell
 docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=develop" -p 1433:1433 --name sql1 -d mcr.microsoft.com/mssql/server:2022-latest
 ```
+- *This will not require to install Visual Studio and the dependencies mentioned below, only to install the dotnet and dotnet-ef command line utilities and run the commands to make the migrations and run the application will be needed
 
 ### Steps
 - If you installed Visual Studio with the modules specified above you can skip the following steps that have a '(optional)' at the beginning
