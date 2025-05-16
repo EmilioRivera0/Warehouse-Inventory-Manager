@@ -56,6 +56,9 @@ namespace Warehouse_Inventory_Manager.Controllers
             if (product == null)
                 return NotFound();
 
+            ViewData["Name"] = product.Name;
+            ViewData["Stock"] = product.Stock;
+
             return View();
         }
 

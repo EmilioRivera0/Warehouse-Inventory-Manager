@@ -8,12 +8,12 @@
     ViewData["Title"] = "Warehouse Inventory";
 }
 
-<h1>Index</h1>
+<h1>Products</h1>
 
 @if (User.IsInRole("Admin"))
 {
     <p>
-        <a asp-action="Create">Create New</a>
+        <a class="button-link" asp-action="Create">Create New</a>
     </p>
 }
 <table class="table">

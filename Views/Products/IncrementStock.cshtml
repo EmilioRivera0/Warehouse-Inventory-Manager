@@ -2,17 +2,20 @@
     ViewData["Title"] = "Increment Stock";
 }
 
-<h1>Edit</h1>
+<h1>Increment Stock</h1>
 
-<h4>Products</h4>
+<h4>@ViewData["Name"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="IncrementStock">
             <div class="form-group">
+                <label class="control-label">Current Stock: @ViewData["Stock"]</label>
+            </div>
+            <div class="form-group">
                 <label class="control-label">Add Stock</label>
                 <input name="NewStock" class="form-control" />
-                <p>@ViewData["Error"]</p>
+                <p style="font-weight: bold; color: red">@ViewData["Error"]</p>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
