@@ -7,8 +7,8 @@
 - C# .NET 9.0.5
 
 ## Used DBMS and its Version
-- SQL Server 15.0.4382 (Integrada en Visual Studio)
-- *I could not use SQL Server from Docker (which was my intended plan) since the image was not available for Pull requests. So to not loose anymore time, I used the SQL Server DB integrated in Visual Studio 
+- SQL Server 15.0.4382 (Integrated in Visual Studio)
+- *I could not use SQL Server from Docker (which was my intended plan) since the image was not available for Pull requests. So to not loose more time, I used the SQL Server DB integrated in Visual Studio 
 
 ## Steps to run the application
 #### About the used db for this application
