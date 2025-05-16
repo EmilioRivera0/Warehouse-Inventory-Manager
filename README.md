@@ -44,3 +44,11 @@ dotnet ef database update
 dotnet run
 ```
 - Now you can enter the displayed *localhost:PORT* address to test the application
+
+## Login Credentials
+### Admin user:
+- Email: admin@wim.com
+- Password: Admin123-
+### Warehouse Staff user:
+- Email: worker1@wim.com
+- Password: Worker123-
