@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace Warehouse_Inventory_Manager.Models
 {
@@ -7,6 +8,7 @@ namespace Warehouse_Inventory_Manager.Models
     {
         // By convention the PK should be called Id instead of idProduct
         public int Id { get; set; }
+        [StringLength(100)]
         public string Name { get; set; } = null!;
         [Precision(16,2)]
         public decimal Price { get; set; }

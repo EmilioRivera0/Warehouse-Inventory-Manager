@@ -12,6 +12,7 @@ using Warehouse_Inventory_Manager.Models;
 
 namespace Warehouse_Inventory_Manager.Controllers
 {
+    // Controller and its views are accessible only by Warehouse Staff
     [Authorize(Roles = "Warehouse Staff")]
     public class WithdrawProductsController(ApplicationDbContext context) : Controller
     {

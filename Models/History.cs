@@ -6,6 +6,7 @@ namespace Warehouse_Inventory_Manager.Models
     {
         // By convention the PK should be called Id instead of idHistory
         public int Id { get; set; }
+        [StringLength(1)]
         public string Type { get; set; } = null!;
         public DateTime Datetime { get; set; } = DateTime.Now;
         // FK

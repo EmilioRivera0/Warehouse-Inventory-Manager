@@ -12,6 +12,7 @@ using Warehouse_Inventory_Manager.Models;
 
 namespace Warehouse_Inventory_Manager.Controllers
 {
+    // Only logged users can access this controller and its views
     [Authorize]
     public class ProductsController(ApplicationDbContext context) : Controller
     {
@@ -24,13 +25,15 @@ namespace Warehouse_Inventory_Manager.Controllers
             return View(await _context.ProductsSet.ToListAsync());
         }
 
-        // Display Create Product Page
+        // Display Create Product Page only to Admins
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Create Product
+        // POST: Create Product, only for Admins
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Price")] Products products)
@@ -44,7 +47,8 @@ namespace Warehouse_Inventory_Manager.Controllers
             return View(products);
         }
 
-        // Display Increment Stock Product Page
+        // Display Increment Stock Product Page only for Admins
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> IncrementStock(int? id)
         {
             Products product = await _context.ProductsSet.FindAsync(id);
@@ -55,7 +59,8 @@ namespace Warehouse_Inventory_Manager.Controllers
             return View();
         }
 
-        // POST: Update Stock of Specified Product
+        // POST: Update Stock of Specified Product, only for Admins
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> IncrementStock(int id)
@@ -114,7 +119,8 @@ namespace Warehouse_Inventory_Manager.Controllers
             return View(product);
         }
 
-        // POST: Update Stock of Specified Product
+        // POST: Update Stock of Specified Product, only for Admins
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateStatus(int id)

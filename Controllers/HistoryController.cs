@@ -11,6 +11,7 @@ using Warehouse_Inventory_Manager.Models;
 
 namespace Warehouse_Inventory_Manager.Controllers
 {
+    // Only Admins can access this conntroller and its views
     [Authorize(Roles = "Admin")]
     public class HistoryController(ApplicationDbContext context) : Controller
     {
@@ -18,8 +19,8 @@ namespace Warehouse_Inventory_Manager.Controllers
 
         // GET: List all Movements
         // Action Method accepts request with or without "option" parameter
-        [Route("/History/Index")]
-        [Route("/History/Index/{option?}")]
+        [Route("/History")]
+        [Route("/History/{option?}")]
         public async Task<IActionResult> Index(string option = null!)
         {
             List<History> historyList;

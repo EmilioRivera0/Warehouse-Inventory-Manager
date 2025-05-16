@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Warehouse_Inventory_Manager.Models
 {
@@ -14,6 +15,7 @@ namespace Warehouse_Inventory_Manager.Models
          * - idRol
          * - name
          */
+        [StringLength(100)]
         public string Name { get; set; } = null!;
         public int Status { get; set; } = 1; // 1 = active (default), 0 = inactive
         // Navigation property to enable relationships

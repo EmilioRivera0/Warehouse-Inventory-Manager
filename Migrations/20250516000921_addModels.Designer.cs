@@ -12,7 +12,7 @@ using Warehouse_Inventory_Manager.Data;
 namespace Warehouse_Inventory_Manager.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250515224251_addModels")]
+    [Migration("20250516000921_addModels")]
     partial class addModels
     {
         /// <inheritdoc />
@@ -184,7 +184,8 @@ namespace Warehouse_Inventory_Manager.Migrations
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1)
+                        .HasColumnType("nvarchar(1)");
 
                     b.Property<int?>("WarehouseUserId")
                         .HasColumnType("int");
@@ -208,7 +209,8 @@ namespace Warehouse_Inventory_Manager.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("Price")
                         .HasPrecision(16, 2)
@@ -255,7 +257,8 @@ namespace Warehouse_Inventory_Manager.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)

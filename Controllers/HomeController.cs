@@ -4,6 +4,7 @@ using Warehouse_Inventory_Manager.Models;
 
 namespace Warehouse_Inventory_Manager.Controllers
 {
+    // This controller and its views are public for anyone
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
